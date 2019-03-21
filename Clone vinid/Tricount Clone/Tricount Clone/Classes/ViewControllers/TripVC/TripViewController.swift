@@ -17,6 +17,12 @@ class TripViewController: ViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func addNewTrip(_ sender: Any) {
+        let vc = storyboard!.instantiateViewController(ofType: AddNewTripViewController.self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     override func setupUI() {
         navigationItem.title = "Tricount Clone"
         tableView.tableFooterView = UIView()

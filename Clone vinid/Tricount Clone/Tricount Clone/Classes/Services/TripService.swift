@@ -20,10 +20,22 @@ class TripService {
             .queryOrdered(byChild: "uid")
             .queryEqual(toValue: uid)
         
-        var tripArr = [TripModel]()
         ref.observe(.value) { snapshot in
             let trips = Mapper<TripModel>().mapArray(snapshot: snapshot)
             completion(trips)
+        }
+    }
+    
+    func createNewTrip(with values: [String:Any],_ completion: @escaping (DatabaseReference) -> Void){
+        Database.database().reference()
+            .child("trips")
+            .childByAutoId()
+            .setValue(values) { (err, ref) in
+                if let err = err {
+                    print("data could not be saved: \(err)")
+                }
+                
+                completion(ref)
         }
     }
 }
