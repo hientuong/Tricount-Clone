@@ -35,6 +35,8 @@
 		6484CDB822436C9500A52946 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB722436C9500A52946 /* ExpenseModel.swift */; };
 		6484CDBA22436D1F00A52946 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB922436D1F00A52946 /* ExpenseService.swift */; };
 		649246D72243703300B813F4 /* TripTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649246D62243703300B813F4 /* TripTabbarController.swift */; };
+		649246D922437A1400B813F4 /* DebtService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649246D822437A1400B813F4 /* DebtService.swift */; };
+		649246DB2243871000B813F4 /* DebtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649246DA2243871000B813F4 /* DebtModel.swift */; };
 		64DD813022434A7300A54C43 /* AddNewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD812F22434A7300A54C43 /* AddNewTripViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,8 @@
 		6484CDB722436C9500A52946 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		6484CDB922436D1F00A52946 /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
 		649246D62243703300B813F4 /* TripTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTabbarController.swift; sourceTree = "<group>"; };
+		649246D822437A1400B813F4 /* DebtService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtService.swift; sourceTree = "<group>"; };
+		649246DA2243871000B813F4 /* DebtModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtModel.swift; sourceTree = "<group>"; };
 		64DD812F22434A7300A54C43 /* AddNewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTripViewController.swift; sourceTree = "<group>"; };
 		A5478031C9A794D3006C853E /* Pods-Tricount Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricount Clone.debug.xcconfig"; path = "Target Support Files/Pods-Tricount Clone/Pods-Tricount Clone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +220,7 @@
 				645628EB224343A7009E6B47 /* TripService.swift */,
 				6484CDA222434F2E00A52946 /* MemberService.swift */,
 				6484CDB922436D1F00A52946 /* ExpenseService.swift */,
+				649246D822437A1400B813F4 /* DebtService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				645628E5224342F2009E6B47 /* TripModel.swift */,
 				6484CDA022434BDE00A52946 /* MemberModel.swift */,
 				6484CDB722436C9500A52946 /* ExpenseModel.swift */,
+				649246DA2243871000B813F4 /* DebtModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,12 +508,14 @@
 				6484CDA922436ADB00A52946 /* ExpensesViewController.swift in Sources */,
 				6484CDA322434F2E00A52946 /* MemberService.swift in Sources */,
 				6484CDAA22436ADB00A52946 /* BalancesViewController.swift in Sources */,
+				649246DB2243871000B813F4 /* DebtModel.swift in Sources */,
 				6484CD9F22434B8C00A52946 /* MemberTableCell.swift in Sources */,
 				645628DE224341E4009E6B47 /* UIStoryboard+.swift in Sources */,
 				645628D822434112009E6B47 /* TripViewController.swift in Sources */,
 				645628E6224342F2009E6B47 /* TripModel.swift in Sources */,
 				6484CDB822436C9500A52946 /* ExpenseModel.swift in Sources */,
 				645628DB22434131009E6B47 /* TripTableCell.swift in Sources */,
+				649246D922437A1400B813F4 /* DebtService.swift in Sources */,
 				645628E0224341EC009E6B47 /* UITableView+.swift in Sources */,
 				6484CDB522436B8E00A52946 /* BalancesTableViewCell.swift in Sources */,
 				6484CDBA22436D1F00A52946 /* ExpenseService.swift in Sources */,

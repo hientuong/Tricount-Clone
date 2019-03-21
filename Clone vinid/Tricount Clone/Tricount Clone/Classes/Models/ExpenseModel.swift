@@ -13,13 +13,13 @@ class ExpenseModel: Mappable {
     var id: String?
     var name: String?
     var amount: String?
-    var uid: String?
+    var paid_by: String?
     var trip_id: String?
-    var timestamp: String?
+    var timestamp: Double?
     
     func mapping(map: Map) {
         id <- map[ExpenseModel.firebaseIdKey]
-        uid <- map["uid"]
+        paid_by <- map["paid_by"]
         name <- map["name"]
         amount <- map["amount"]
         trip_id <- map["trip_id"]

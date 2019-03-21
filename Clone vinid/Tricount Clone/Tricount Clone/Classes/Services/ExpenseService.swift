@@ -11,8 +11,9 @@ import Firebase
 import ObjectMapper
 
 class ExpenseService {
+    let ref = Database.database().reference()
     func getExpense(with trip_id: String,_ completion: @escaping ([ExpenseModel]) -> Void) {
-        Database.database().reference()
+        ref
             .child("expenses")
             .queryOrdered(byChild: "trip_id")
             .queryEqual(toValue: trip_id)
@@ -23,7 +24,7 @@ class ExpenseService {
     }
     
     func addExpense(with values: [String:Any], _ completion: @escaping () -> Void) {
-        Database.database().reference()
+        ref
             .child("expenses")
             .childByAutoId()
             .setValue(values) { (err, ref) in

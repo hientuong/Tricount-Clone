@@ -36,6 +36,7 @@ class ExpensesViewController: ViewController {
     
     @IBAction func addExpense(_ sender: Any) {
         let vc = storyboard!.instantiateViewController(ofType: AddExpenseViewController.self)
+        vc.trip = trip
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -54,9 +55,13 @@ extension ExpensesViewController: UITableViewDataSource, UITableViewDelegate {
     
     private func setupCell(cell: ExpensesTableViewCell, model: ExpenseModel) {
         cell.nameLB.text = model.name
-        cell.paidLB.text = model.id
-        cell.amountLB.text = model.amount
-        cell.dateLB.text = model.timestamp
+        cell.amountLB.text = "đ\(model.amount!)"
+        cell.dateLB.text = "\(model.timestamp!)"
+        
+        let service = MemberService()
+        service.getMember(by: model.paid_by!) { member in
+            cell.paidLB.text = "paid by \(member.name!)"
+        }
     }
 }
 
