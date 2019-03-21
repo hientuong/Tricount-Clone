@@ -11,6 +11,7 @@ import ObjectMapper
 
 class DebtModel: Mappable {
     var id: String?
+    var name: String?
     var uid: String?
     var amount: Double?
     var count: Int?
@@ -18,6 +19,7 @@ class DebtModel: Mappable {
     
     func mapping(map: Map) {
         id <- map[DebtModel.firebaseIdKey]
+        name <- map["name"]
         uid <- map["uid"]
         amount <- map["amount"]
         count <- map["count"]

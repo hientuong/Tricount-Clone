@@ -21,7 +21,7 @@ class ExpensesViewController: ViewController {
     }
     
     override func setupUI() {
-        navigationItem.title = trip?.name
+        self.parent?.title = trip?.name
         tableView.tableFooterView = UIView()
     }
     
@@ -56,7 +56,7 @@ extension ExpensesViewController: UITableViewDataSource, UITableViewDelegate {
     private func setupCell(cell: ExpensesTableViewCell, model: ExpenseModel) {
         cell.nameLB.text = model.name
         cell.amountLB.text = "đ\(model.amount!)"
-        cell.dateLB.text = "\(model.timestamp!)"
+        cell.dateLB.text = FunctionHelpers.convert(timestamp: model.timestamp!)
         
         let service = MemberService()
         service.getMember(by: model.paid_by!) { member in

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VGBase
 
 class ViewController: UIViewController {
     

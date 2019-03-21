@@ -11,5 +11,6 @@ target 'Tricount Clone' do
     pod 'RxFirebase/Auth'
 
     pod 'ObjectMapper', '~> 3.4'
+    pod 'DropDown'
 
 end

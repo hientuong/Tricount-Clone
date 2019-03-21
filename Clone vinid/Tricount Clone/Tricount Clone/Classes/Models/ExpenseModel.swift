@@ -15,7 +15,7 @@ class ExpenseModel: Mappable {
     var amount: String?
     var paid_by: String?
     var trip_id: String?
-    var timestamp: Double?
+    var timestamp: TimeInterval?
     
     func mapping(map: Map) {
         id <- map[ExpenseModel.firebaseIdKey]

@@ -11,6 +11,7 @@ import Firebase
 
 class TripViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
+
     var trips = [TripModel]()
     
     override func viewDidLoad() {

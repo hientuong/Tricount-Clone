@@ -20,6 +20,8 @@ class BalancesViewController: ViewController {
     }
     
     override func setupUI() {
+        self.parent?.title = trip?.name
+        
         tableView.tableFooterView = UIView()
     }
     
@@ -45,7 +47,7 @@ extension BalancesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func setupCell(_ cell: BalancesTableViewCell, model: DebtModel){
-        cell.amountLB.text = "\(model.amount!)"
+        cell.amountLB.text = "đ\(model.amount!)"
         
         let service = MemberService()
         
