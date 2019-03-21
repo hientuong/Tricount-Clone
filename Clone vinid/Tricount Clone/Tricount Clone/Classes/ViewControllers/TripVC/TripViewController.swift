@@ -54,5 +54,13 @@ extension TripViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLB.text = model.name
         cell.descLB.text = model.desc
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard!.instantiateViewController(ofType: TripTabbarController.self)
+        //        let expenseVc = vc.tabBarController?.viewControllers?.first as? ExpensesViewController
+        let model = trips[indexPath.row]
+        vc.trip = model
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

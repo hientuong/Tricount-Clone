@@ -90,5 +90,11 @@ extension AddNewTripViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc private func deleteMember(sender: UIButton){
         print("tag: \(sender.tag)")
+        members.remove(at: sender.tag)
+        let indexPath = IndexPath(item: sender.tag, section: 0)
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.layoutIfNeeded()
+        tableView.endUpdates()
     }
 }

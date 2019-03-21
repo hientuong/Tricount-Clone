@@ -26,6 +26,15 @@
 		6484CD9F22434B8C00A52946 /* MemberTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CD9E22434B8C00A52946 /* MemberTableCell.swift */; };
 		6484CDA122434BDE00A52946 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDA022434BDE00A52946 /* MemberModel.swift */; };
 		6484CDA322434F2E00A52946 /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDA222434F2E00A52946 /* MemberService.swift */; };
+		6484CDA922436ADB00A52946 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDA622436ADB00A52946 /* ExpensesViewController.swift */; };
+		6484CDAA22436ADB00A52946 /* BalancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDA822436ADB00A52946 /* BalancesViewController.swift */; };
+		6484CDAD22436AEC00A52946 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDAC22436AEC00A52946 /* AddExpenseViewController.swift */; };
+		6484CDB422436B8E00A52946 /* RelatedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDAF22436B8E00A52946 /* RelatedTableCell.swift */; };
+		6484CDB522436B8E00A52946 /* BalancesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB122436B8E00A52946 /* BalancesTableViewCell.swift */; };
+		6484CDB622436B8E00A52946 /* ExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB322436B8E00A52946 /* ExpensesTableViewCell.swift */; };
+		6484CDB822436C9500A52946 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB722436C9500A52946 /* ExpenseModel.swift */; };
+		6484CDBA22436D1F00A52946 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484CDB922436D1F00A52946 /* ExpenseService.swift */; };
+		649246D72243703300B813F4 /* TripTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649246D62243703300B813F4 /* TripTabbarController.swift */; };
 		64DD813022434A7300A54C43 /* AddNewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD812F22434A7300A54C43 /* AddNewTripViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +74,15 @@
 		6484CD9E22434B8C00A52946 /* MemberTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableCell.swift; sourceTree = "<group>"; };
 		6484CDA022434BDE00A52946 /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
 		6484CDA222434F2E00A52946 /* MemberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
+		6484CDA622436ADB00A52946 /* ExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		6484CDA822436ADB00A52946 /* BalancesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancesViewController.swift; sourceTree = "<group>"; };
+		6484CDAC22436AEC00A52946 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		6484CDAF22436B8E00A52946 /* RelatedTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedTableCell.swift; sourceTree = "<group>"; };
+		6484CDB122436B8E00A52946 /* BalancesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancesTableViewCell.swift; sourceTree = "<group>"; };
+		6484CDB322436B8E00A52946 /* ExpensesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewCell.swift; sourceTree = "<group>"; };
+		6484CDB722436C9500A52946 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
+		6484CDB922436D1F00A52946 /* ExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
+		649246D62243703300B813F4 /* TripTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTabbarController.swift; sourceTree = "<group>"; };
 		64DD812F22434A7300A54C43 /* AddNewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTripViewController.swift; sourceTree = "<group>"; };
 		A5478031C9A794D3006C853E /* Pods-Tricount Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricount Clone.debug.xcconfig"; path = "Target Support Files/Pods-Tricount Clone/Pods-Tricount Clone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +199,10 @@
 		645628CF22433F8E009E6B47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				649246D52243701900B813F4 /* TripTabbarViewController */,
+				6484CDAB22436AEC00A52946 /* AddExpenseViewController */,
+				6484CDA722436ADB00A52946 /* BalancesViewController */,
+				6484CDA522436ADB00A52946 /* ExpensesViewController */,
 				64DD812E22434A5C00A54C43 /* AddNewTripVC */,
 				645628D6224340FD009E6B47 /* TripVC */,
 				6456289B22433BFB009E6B47 /* ViewController.swift */,
@@ -193,6 +215,7 @@
 			children = (
 				645628EB224343A7009E6B47 /* TripService.swift */,
 				6484CDA222434F2E00A52946 /* MemberService.swift */,
+				6484CDB922436D1F00A52946 /* ExpenseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -202,6 +225,7 @@
 			children = (
 				645628E5224342F2009E6B47 /* TripModel.swift */,
 				6484CDA022434BDE00A52946 /* MemberModel.swift */,
+				6484CDB722436C9500A52946 /* ExpenseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +249,9 @@
 		645628D422433FAE009E6B47 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6484CDB022436B8E00A52946 /* BalancesTableCell */,
+				6484CDB222436B8E00A52946 /* ExpensesTableCell */,
+				6484CDAE22436B8E00A52946 /* RelatedTableCell */,
 				6484CD9D22434B7600A52946 /* MemberCell */,
 				645628D922434120009E6B47 /* TripCell */,
 			);
@@ -261,6 +288,62 @@
 				6484CD9E22434B8C00A52946 /* MemberTableCell.swift */,
 			);
 			path = MemberCell;
+			sourceTree = "<group>";
+		};
+		6484CDA522436ADB00A52946 /* ExpensesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDA622436ADB00A52946 /* ExpensesViewController.swift */,
+			);
+			path = ExpensesViewController;
+			sourceTree = "<group>";
+		};
+		6484CDA722436ADB00A52946 /* BalancesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDA822436ADB00A52946 /* BalancesViewController.swift */,
+			);
+			path = BalancesViewController;
+			sourceTree = "<group>";
+		};
+		6484CDAB22436AEC00A52946 /* AddExpenseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDAC22436AEC00A52946 /* AddExpenseViewController.swift */,
+			);
+			path = AddExpenseViewController;
+			sourceTree = "<group>";
+		};
+		6484CDAE22436B8E00A52946 /* RelatedTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDAF22436B8E00A52946 /* RelatedTableCell.swift */,
+			);
+			path = RelatedTableCell;
+			sourceTree = "<group>";
+		};
+		6484CDB022436B8E00A52946 /* BalancesTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDB122436B8E00A52946 /* BalancesTableViewCell.swift */,
+			);
+			path = BalancesTableCell;
+			sourceTree = "<group>";
+		};
+		6484CDB222436B8E00A52946 /* ExpensesTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6484CDB322436B8E00A52946 /* ExpensesTableViewCell.swift */,
+			);
+			path = ExpensesTableCell;
+			sourceTree = "<group>";
+		};
+		649246D52243701900B813F4 /* TripTabbarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				649246D62243703300B813F4 /* TripTabbarController.swift */,
+			);
+			path = TripTabbarViewController;
 			sourceTree = "<group>";
 		};
 		64DD812E22434A5C00A54C43 /* AddNewTripVC */ = {
@@ -416,20 +499,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				645628E82243431B009E6B47 /* Mapper+.swift in Sources */,
+				6484CDA922436ADB00A52946 /* ExpensesViewController.swift in Sources */,
 				6484CDA322434F2E00A52946 /* MemberService.swift in Sources */,
+				6484CDAA22436ADB00A52946 /* BalancesViewController.swift in Sources */,
 				6484CD9F22434B8C00A52946 /* MemberTableCell.swift in Sources */,
 				645628DE224341E4009E6B47 /* UIStoryboard+.swift in Sources */,
 				645628D822434112009E6B47 /* TripViewController.swift in Sources */,
 				645628E6224342F2009E6B47 /* TripModel.swift in Sources */,
+				6484CDB822436C9500A52946 /* ExpenseModel.swift in Sources */,
 				645628DB22434131009E6B47 /* TripTableCell.swift in Sources */,
 				645628E0224341EC009E6B47 /* UITableView+.swift in Sources */,
+				6484CDB522436B8E00A52946 /* BalancesTableViewCell.swift in Sources */,
+				6484CDBA22436D1F00A52946 /* ExpenseService.swift in Sources */,
+				6484CDB422436B8E00A52946 /* RelatedTableCell.swift in Sources */,
 				645628EC224343A7009E6B47 /* TripService.swift in Sources */,
 				645628EA22434331009E6B47 /* BaseMappable+.swift in Sources */,
 				6456289C22433BFB009E6B47 /* ViewController.swift in Sources */,
+				6484CDAD22436AEC00A52946 /* AddExpenseViewController.swift in Sources */,
 				6456289A22433BFB009E6B47 /* AppDelegate.swift in Sources */,
 				64DD813022434A7300A54C43 /* AddNewTripViewController.swift in Sources */,
+				649246D72243703300B813F4 /* TripTabbarController.swift in Sources */,
 				645628E4224342CB009E6B47 /* UIColor+.swift in Sources */,
 				6484CDA122434BDE00A52946 /* MemberModel.swift in Sources */,
+				6484CDB622436B8E00A52946 /* ExpensesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
