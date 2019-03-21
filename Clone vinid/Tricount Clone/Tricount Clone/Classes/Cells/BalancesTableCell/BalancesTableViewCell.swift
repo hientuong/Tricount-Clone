@@ -9,16 +9,7 @@
 import UIKit
 
 class BalancesTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    @IBOutlet weak var borrowerLB: UILabel!
+    @IBOutlet weak var amountLB: UILabel!
+    @IBOutlet weak var lenderLB: UILabel!
 }

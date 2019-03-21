@@ -41,6 +41,14 @@ class AddExpenseViewController: ViewController {
         addNewExpense()
     }
     
+    @IBAction func showDatePicker(_ sender: Any) {
+        
+    }
+    
+    @IBAction func showPaidDropDown(_ sender: Any) {
+        
+    }
+    
     private func addNewExpense(){
         guard
             let name = nameTF.text,
@@ -69,24 +77,26 @@ class AddExpenseViewController: ViewController {
             
             let debt = Double(amount)!/Double(self.members.count)
             for member in memberArr {
-                self.addDebt(for: member, from: member, with: debt)
+                self.addDebt(trip: self.trip!,for: member, from: member, with: debt)
             }
             
             self.navigationController?.popViewController(animated: true)
         }
     }
     
-    private func addDebt(for member: MemberModel, from paid_by: MemberModel,with debt: Double) {
+    private func addDebt(trip: TripModel, for member: MemberModel, from paid_by: MemberModel,with debt: Double) {
         guard
             let uid = member.id,
-            let paid_id = paid_by.id
+            let paid_id = paid_by.id,
+            let trip_id = trip.id
             else { return }
         
         let values = [
             "uid" : uid,
             "amount": debt,
             "count" : "1",
-            "paid_id": "-LaU9XKbWtaHpqKl9uhu"
+            "paid_id": "-LaU9XKbWtaHpqKl9uhu",
+            "trip_id": trip_id,
             ] as [String:Any]
         
         let service = DebtService()

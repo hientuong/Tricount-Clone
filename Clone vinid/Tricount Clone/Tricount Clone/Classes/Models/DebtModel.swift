@@ -12,7 +12,7 @@ import ObjectMapper
 class DebtModel: Mappable {
     var id: String?
     var uid: String?
-    var amount: String?
+    var amount: Double?
     var count: Int?
     var paid_id: String?
     

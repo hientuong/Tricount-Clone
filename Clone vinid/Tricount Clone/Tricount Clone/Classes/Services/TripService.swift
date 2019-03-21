@@ -34,7 +34,6 @@ class TripService {
                 if let err = err {
                     print("data could not be saved: \(err)")
                 }
-                
                 completion(ref)
         }
     }

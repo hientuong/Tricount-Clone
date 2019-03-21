@@ -15,7 +15,10 @@ class TripTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let vc = self.viewControllers?.first as! ExpensesViewController
-        vc.trip = trip
+        let expenseVc = self.viewControllers?.first as! ExpensesViewController
+        expenseVc.trip = trip
+        
+        let balanceVc = self.viewControllers?.last as! BalancesViewController
+        balanceVc.trip = trip
     }
 }
