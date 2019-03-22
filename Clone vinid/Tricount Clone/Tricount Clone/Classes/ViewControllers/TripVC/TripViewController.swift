@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class TripViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -32,7 +33,10 @@ class TripViewController: ViewController {
     override func setupData() {
         let tripService = TripService()
         let uid = Auth.auth().currentUser!.uid
+        
+        HUD.show(.progress)
         tripService.getTrip(by: uid) { [weak self] tripArr in
+            HUD.hide()
             self?.trips = tripArr
             self?.tableView.reloadData()
         }

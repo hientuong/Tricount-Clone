@@ -19,6 +19,6 @@ extension Mapper {
             return nil
             //flatMap here is a trick
             //to filter out `nil` values
-            }.flatMap { $0 }
+            }.compactMap { $0 }
     }
 }

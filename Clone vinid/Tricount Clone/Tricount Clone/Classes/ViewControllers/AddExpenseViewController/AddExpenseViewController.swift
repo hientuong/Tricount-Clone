@@ -18,6 +18,7 @@ class AddExpenseViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePickerTF: UITextField!
     
+    // MARK: - Properties
     var trip: TripModel?
     
     private let datePicker = UIDatePicker()
@@ -43,6 +44,18 @@ class AddExpenseViewController: ViewController {
         datePickerTF.text = FunctionHelpers.convert(date: Date())
     }
     
+    private func setupDropDown(with arr: [MemberModel]){
+        dropDown.anchorView = paidButton
+        let source = arr.map { model -> String in
+            return model.name!
+        }
+        dropDown.dataSource = source
+        dropDown.selectionAction = { [weak self] (index, item) in
+            self?.paidButton.setTitle(item, for: .normal)
+            self?.paidBy = self?.members[index]
+        }
+    }
+    
     override func setupData() {
         let service = MemberService()
         service.getAllMember(by: trip!.id!) { [weak self] arr in
@@ -60,6 +73,12 @@ class AddExpenseViewController: ViewController {
         }
     }
     
+    // MARK: - IBACtion
+    @IBAction func showPaidDropDown(_ sender: Any) {
+        dropDown.show()
+    }
+    
+    // TODO: - Handle amount TF Change
     @objc private func amountTFDidChange() {
         let total = Double(amountTF.text!) ?? 0.0
         debts = modifyData(arr: debts, with: total)
@@ -72,7 +91,6 @@ class AddExpenseViewController: ViewController {
             count += (debt.count ?? 0)
         }
         
-        print("count: \(count)")
         let part = total/Double(count)
         
         for debt in arr {
@@ -82,7 +100,6 @@ class AddExpenseViewController: ViewController {
                 debt.amount = 0
             }
         }
-        
         return arr
     }
     
@@ -90,22 +107,7 @@ class AddExpenseViewController: ViewController {
         addNewExpense()
     }
     
-    @IBAction func showPaidDropDown(_ sender: Any) {
-        dropDown.show()
-    }
-    
-    private func setupDropDown(with arr: [MemberModel]){
-        dropDown.anchorView = paidButton
-        let source = arr.map { model -> String in
-            return model.name!
-        }
-        dropDown.dataSource = source
-        dropDown.selectionAction = { [weak self] (index, item) in
-            self?.paidButton.setTitle(item, for: .normal)
-            self?.paidBy = self?.members[index]
-        }
-    }
-    
+    // TODO: - DatePicker
     private func showDatePicker(){
         //Formate Date
         datePicker.datePickerMode = .date
@@ -136,6 +138,7 @@ class AddExpenseViewController: ViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: - Firebase Database
     private func addNewExpense(){
         guard
             let name = nameTF.text,
@@ -189,6 +192,7 @@ class AddExpenseViewController: ViewController {
 }
 
 extension AddExpenseViewController: UITableViewDataSource, UITableViewDelegate {
+    // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return debts.count
     }
@@ -201,6 +205,7 @@ extension AddExpenseViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // TODO: - Handler countTF change
     @objc private func countTFDidChange(_ sender: UITextField) {
         let total = Double(amountTF.text!) ?? 0.0
         debts[sender.tag].count = Int(sender.text ?? "0") ?? 0
@@ -208,6 +213,7 @@ extension AddExpenseViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadData()
     }
     
+    // TODO: - setupCell
     private func setupCell(_ cell: RelatedTableCell, model: DebtModel){
         cell.nameLB.text = model.name
         cell.countTF.text = "\(model.count ?? 1)"

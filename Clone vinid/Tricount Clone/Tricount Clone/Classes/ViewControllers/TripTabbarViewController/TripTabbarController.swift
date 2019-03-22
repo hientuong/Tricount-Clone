@@ -17,7 +17,7 @@ class TripTabbarController: UITabBarController {
         
         let expenseVc = self.viewControllers?.first as! ExpensesViewController
         expenseVc.trip = trip
-        
+    
         let balanceVc = self.viewControllers?.last as! BalancesViewController
         balanceVc.trip = trip
     }

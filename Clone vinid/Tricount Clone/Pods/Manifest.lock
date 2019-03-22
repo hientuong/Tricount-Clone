@@ -63,6 +63,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - ObjectMapper (3.4.2)
+  - PKHUD (5.2.1)
   - RxAtomic (4.4.2)
   - RxCocoa (4.4.2):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - DropDown
   - Firebase/Core
   - ObjectMapper (~> 3.4)
+  - PKHUD (~> 5.0)
   - RxFirebase/Auth
   - RxFirebase/Database
 
@@ -105,6 +107,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - ObjectMapper
+    - PKHUD
     - RxAtomic
     - RxCocoa
     - RxFirebase
@@ -127,6 +130,7 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxFirebase: 77493b62bfafe7d4dbb404bd06874756f29465ab
@@ -134,6 +138,6 @@ SPEC CHECKSUMS:
   RxFirebaseDatabase: c75bd954c983fdf134f13f8f46d75058e83eb822
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
 
-PODFILE CHECKSUM: 97ceb937933a0b83856123e5babcb0b7e4f3ba04
+PODFILE CHECKSUM: 9444221bd48236ac9c5c981369dc2464d15b10bb
 
 COCOAPODS: 1.6.1

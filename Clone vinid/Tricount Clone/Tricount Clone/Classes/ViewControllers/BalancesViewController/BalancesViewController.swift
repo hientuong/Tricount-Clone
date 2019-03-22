@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class BalancesViewController: ViewController {
     
@@ -28,8 +29,12 @@ class BalancesViewController: ViewController {
     override func setupData() {
         let service = DebtService()
         
+        HUD.show(.progress)
         service.getAllDebt(by: trip!.id!) { [weak self] arr in
+            HUD.hide()
             self?.debts = arr
+            let dict = Dictionary(grouping: arr, by: {$0.uid})
+            print("dict: \(dict)")
             self?.tableView.reloadData()
         }
     }

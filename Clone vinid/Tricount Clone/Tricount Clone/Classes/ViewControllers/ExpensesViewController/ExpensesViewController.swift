@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 import ObjectMapper
+import PKHUD
 
 class ExpensesViewController: ViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var expenses = [ExpenseModel]()
     var trip: TripModel?
+    var sortFlag: Bool = false
+    var sortItemButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +25,22 @@ class ExpensesViewController: ViewController {
     
     override func setupUI() {
         self.parent?.title = trip?.name
+        
+        sortItemButton = UIBarButtonItem(title: "Sort by name", style: .plain, target: self, action: #selector(sort))
+        tabBarController?.viewControllers?.first?.navigationItem.rightBarButtonItem = sortItemButton
+        
         tableView.tableFooterView = UIView()
     }
     
     override func setupData() {
         let service = ExpenseService()
+        HUD.show(.progress)
         service.getExpense(with: trip!.id!, { [weak self] arr in
             guard let `self` = self else { return }
-            self.expenses = arr
+            HUD.hide()
+            self.expenses = arr.sorted {
+                return $0.timestamp! > $1.timestamp!
+            }
             self.tableView.reloadData()
         })
     }
@@ -38,6 +49,17 @@ class ExpensesViewController: ViewController {
         let vc = storyboard!.instantiateViewController(ofType: AddExpenseViewController.self)
         vc.trip = trip
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func sort(){
+        if sortFlag {
+            expenses = expenses.sorted { return $0.timestamp! > $1.timestamp! }
+        } else {
+            expenses = expenses.sorted { return $0.paid_by! > $1.paid_by! }
+        }
+        sortItemButton.title = sortFlag ? "Sort by name" : "Sort by time"
+        sortFlag = !sortFlag
+        tableView.reloadData()
     }
 }
 

@@ -30,7 +30,7 @@ class MemberService {
             .child("members")
             .queryOrdered(byChild: "trip_id")
             .queryEqual(toValue: trip_id)
-            .observe(.value) { [weak self] snapshot in
+            .observe(.value) { snapshot in
                 let arr = Mapper<MemberModel>().mapArray(snapshot: snapshot)
                 completion(arr)
         }

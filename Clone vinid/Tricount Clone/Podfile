@@ -12,5 +12,6 @@ target 'Tricount Clone' do
 
     pod 'ObjectMapper', '~> 3.4'
     pod 'DropDown'
+    pod 'PKHUD', '~> 5.0'
 
 end

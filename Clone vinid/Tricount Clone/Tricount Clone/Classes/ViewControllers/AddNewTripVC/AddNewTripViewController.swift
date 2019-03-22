@@ -28,12 +28,14 @@ class AddNewTripViewController: ViewController {
         ref = Database.database().reference()
     }
     
+    // MARK: - UI
     override func setupUI() {
         let saveItemButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         navigationItem.rightBarButtonItem = saveItemButton
         navigationItem.title = "New Trip"
     }
     
+    // MARK: - IBAction
     @IBAction func addMember(_ sender: Any) {
         guard let name = nameTF.text else { return }
         let model = MemberModel(name: name)
@@ -48,6 +50,7 @@ class AddNewTripViewController: ViewController {
         }
     }
     
+    // MARK: - Firebase DB
     private func createNewTrip(_ completion: @escaping () -> Void){
         guard
             let title = titleTF.text,
@@ -65,6 +68,7 @@ class AddNewTripViewController: ViewController {
         
         let tripService = TripService()
         let memberService = MemberService()
+
         tripService.createNewTrip(with: values) { [weak self] ref in
             let key = ref.key
             for member in self!.members {
