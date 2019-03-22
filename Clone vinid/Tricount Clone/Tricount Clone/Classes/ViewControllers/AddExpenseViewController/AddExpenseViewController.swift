@@ -30,8 +30,7 @@ class AddExpenseViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDatePicker()
-        setupDropDown()
-        amountTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        amountTF.addTarget(self, action: #selector(amountTFDidChange), for: .editingChanged)
     }
     
     // MARK: - UI & Data
@@ -49,12 +48,42 @@ class AddExpenseViewController: ViewController {
         service.getAllMember(by: trip!.id!) { [weak self] arr in
             self?.members = arr
             self?.paidBy = arr.first
+            self?.paidButton.setTitle(arr.first?.name ?? "", for: .normal)
+            
+            self?.debts = arr.map {
+                let debt = DebtModel(name: $0.name, uid: $0.id, amount: 0, count: 1, paid_id: self?.paidBy.id)
+                return debt
+            }
+            
+            self?.setupDropDown(with: arr)
             self?.tableView.reloadData()
         }
     }
     
-    @objc private func textFieldDidChange() {
-        print(amountTF.text!)
+    @objc private func amountTFDidChange() {
+        let total = Double(amountTF.text!) ?? 0.0
+        debts = modifyData(arr: debts, with: total)
+        tableView.reloadData()
+    }
+    
+    private func modifyData(arr: [DebtModel], with total: Double) -> [DebtModel] {
+        var count = 0
+        for debt in arr {
+            count += (debt.count ?? 0)
+        }
+        
+        print("count: \(count)")
+        let part = total/Double(count)
+        
+        for debt in arr {
+            if debt.count != nil && debt.count != 0{
+                debt.amount = part * Double(debt.count!)
+            } else {
+                debt.amount = 0
+            }
+        }
+        
+        return arr
     }
     
     @objc private func save(){
@@ -65,11 +94,15 @@ class AddExpenseViewController: ViewController {
         dropDown.show()
     }
     
-    private func setupDropDown(){
+    private func setupDropDown(with arr: [MemberModel]){
         dropDown.anchorView = paidButton
-        dropDown.dataSource = ["Car", "Truck", "Train"]
+        let source = arr.map { model -> String in
+            return model.name!
+        }
+        dropDown.dataSource = source
         dropDown.selectionAction = { [weak self] (index, item) in
             self?.paidButton.setTitle(item, for: .normal)
+            self?.paidBy = self?.members[index]
         }
     }
     
@@ -116,14 +149,14 @@ class AddExpenseViewController: ViewController {
         let values = [
             "name" : name,
             "amount": amount,
-            "paid_by": "-LaU9XKbWtaHpqKl9uhu",
+            "paid_by": paid_by,
             "timestamp": currentTimestamp,
             "trip_id" : tripId
             ] as [String:Any]
         
         service.addExpense(with: values) {
             let memberArr = self.members.filter {
-                $0.id != "-LaU9XKbWtaHpqKl9uhu"
+                $0.id != paid_by
             }
             
             let debt = Double(amount)!/Double(self.members.count)
@@ -157,16 +190,27 @@ class AddExpenseViewController: ViewController {
 
 extension AddExpenseViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return members.count
+        return debts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(ofType: RelatedTableCell.self)
-        setupCell(cell, model: members[indexPath.row])
+        cell.countTF.addTarget(self, action: #selector(countTFDidChange(_:)), for: .editingChanged)
+        cell.countTF.tag = indexPath.row
+        setupCell(cell, model: debts[indexPath.row])
         return cell
     }
     
-    private func setupCell(_ cell: RelatedTableCell, model: MemberModel){
+    @objc private func countTFDidChange(_ sender: UITextField) {
+        let total = Double(amountTF.text!) ?? 0.0
+        debts[sender.tag].count = Int(sender.text ?? "0") ?? 0
+        debts = modifyData(arr: debts, with: total)
+        tableView.reloadData()
+    }
+    
+    private func setupCell(_ cell: RelatedTableCell, model: DebtModel){
         cell.nameLB.text = model.name
+        cell.countTF.text = "\(model.count ?? 1)"
+        cell.amountLB.text = "\(model.amount ?? 0)"
     }
 }

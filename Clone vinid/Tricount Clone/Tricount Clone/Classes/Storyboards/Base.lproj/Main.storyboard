@@ -602,7 +602,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-x2-tku">
                                                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="79.5"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9qW-iN-Ia1">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9qW-iN-Ia1">
                                                                     <rect key="frame" x="8" y="29.5" width="30" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="PTv-LF-Wu4"/>
