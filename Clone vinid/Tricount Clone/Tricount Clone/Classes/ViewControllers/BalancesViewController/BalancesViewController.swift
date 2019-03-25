@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import Foundation
 
 class BalancesViewController: ViewController {
     
@@ -16,8 +17,9 @@ class BalancesViewController: ViewController {
     var trip: TripModel?
     private var debts = [DebtModel]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.rightBarButtonItem = nil
     }
     
     override func setupUI() {
@@ -32,11 +34,40 @@ class BalancesViewController: ViewController {
         HUD.show(.progress)
         service.getAllDebt(by: trip!.id!) { [weak self] arr in
             HUD.hide()
-            self?.debts = arr
-            let dict = Dictionary(grouping: arr, by: {$0.uid})
-            print("dict: \(dict)")
-            self?.tableView.reloadData()
+            guard let `self` = self else { return }
+            self.debts = self.calculateData(arr)
+            self.tableView.reloadData()
         }
+    }
+    
+    private func calculateData(_ arr: [DebtModel]) -> [DebtModel] {
+        var resultArr = [DebtModel]()
+        
+        let uids = Set<String>(arr.compactMap { $0.uid})
+        let paidIds = Set<String>(arr.compactMap { $0.paid_id})
+        
+        for uid in uids {
+            for paidId in paidIds {
+                let sum = arr.filter({$0.uid == uid && $0.paid_id == paidId}).map({$0.amount!}).reduce(0, +)
+                print("sum: \(sum)")
+                if sum > 0 {
+                    let model = DebtModel(name: "", uid: uid, amount: sum, count: 1, paid_id: paidId)
+                    resultArr.append(model)
+                }
+            }
+        }
+        
+        var finalResult = [DebtModel]()
+        
+        for result in resultArr {
+            let arr = resultArr.filter { $0.uid == result.paid_id && $0.paid_id == result.uid }
+            if let first = arr.first {
+                let amount = result.amount! - first.amount!
+                let model = DebtModel(name: "", uid: result.uid, amount: amount, count: 1, paid_id: result.paid_id)
+                finalResult.append(model)
+            }
+        }
+        return finalResult.filter { $0.amount! > 0 }
     }
 }
 

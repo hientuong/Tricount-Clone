@@ -12,22 +12,24 @@ import ObjectMapper
 import PKHUD
 
 class ExpensesViewController: ViewController {
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     var expenses = [ExpenseModel]()
     var trip: TripModel?
     var sortFlag: Bool = false
     var sortItemButton: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        sortItemButton = UIBarButtonItem(title: "Sort by name", style: .plain, target: self, action: #selector(sort))
+        tabBarController?.navigationItem.rightBarButtonItem = sortItemButton
     }
     
     override func setupUI() {
         self.parent?.title = trip?.name
         
-        sortItemButton = UIBarButtonItem(title: "Sort by name", style: .plain, target: self, action: #selector(sort))
-        tabBarController?.viewControllers?.first?.navigationItem.rightBarButtonItem = sortItemButton
+        
         
         tableView.tableFooterView = UIView()
     }
