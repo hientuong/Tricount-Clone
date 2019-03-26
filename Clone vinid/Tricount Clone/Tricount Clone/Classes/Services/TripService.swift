@@ -33,6 +33,7 @@ class TripService {
             .setValue(values) { (err, ref) in
                 if let err = err {
                     print("data could not be saved: \(err)")
+                    return
                 }
                 completion(ref)
         }

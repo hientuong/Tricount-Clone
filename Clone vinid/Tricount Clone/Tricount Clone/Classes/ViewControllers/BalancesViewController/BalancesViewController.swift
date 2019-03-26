@@ -75,6 +75,8 @@ class BalancesViewController: ViewController {
                     paid_id: result.paid_id)
                 
                 finalResult.append(model)
+            } else {
+                finalResult.append(result)
             }
         }
         return finalResult.filter { $0.amount! > 0 }
