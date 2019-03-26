@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import PKHUD
 
 class AddExpenseViewController: ViewController {
     
@@ -31,7 +32,8 @@ class AddExpenseViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDatePicker()
-        amountTF.addTarget(self, action: #selector(amountTFDidChange), for: .editingChanged)
+        amountTF.addTarget(self, action: #selector(tFDidChange(sender:)), for: .editingChanged)
+        nameTF.addTarget(self, action: #selector(tFDidChange(sender:)), for: .editingChanged)
     }
     
     // MARK: - UI & Data
@@ -39,9 +41,11 @@ class AddExpenseViewController: ViewController {
         navigationItem.title = "New expense"
         let saveItemButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         navigationItem.rightBarButtonItem = saveItemButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         tableView.tableFooterView = UIView()
         datePickerTF.text = FunctionHelpers.convert(date: Date())
+        amountTF.keyboardType = .numberPad
     }
     
     private func setupDropDown(with arr: [MemberModel]){
@@ -58,7 +62,12 @@ class AddExpenseViewController: ViewController {
     
     override func setupData() {
         let service = MemberService()
+        
+        HUD.show(.progress)
+        
         service.getAllMember(by: trip!.id!) { [weak self] arr in
+            HUD.hide()
+            
             self?.members = arr
             self?.paidBy = arr.first
             self?.paidButton.setTitle(arr.first?.name ?? "", for: .normal)
@@ -79,10 +88,22 @@ class AddExpenseViewController: ViewController {
     }
     
     // TODO: - Handle amount TF Change
-    @objc private func amountTFDidChange() {
+    @objc private func tFDidChange(sender: UITextField) {
+        navigationItem.rightBarButtonItem?.isEnabled = isValid()
+        if sender == amountTF { reloadDataWhenAmountChange() }
+    }
+    
+    private func reloadDataWhenAmountChange() {
         let total = Double(amountTF.text!) ?? 0.0
         debts = modifyData(arr: debts, with: total)
         tableView.reloadData()
+    }
+    
+    private func isValid() -> Bool {
+        if nameTF.text!.isEmpty || amountTF.text!.isEmpty {
+            return false
+        }
+        return true
     }
     
     private func modifyData(arr: [DebtModel], with total: Double) -> [DebtModel] {
@@ -158,30 +179,26 @@ class AddExpenseViewController: ViewController {
             ] as [String:Any]
         
         service.addExpense(with: values) {
-            let memberArr = self.members.filter {
-                $0.id != paid_by
+            for debt in self.debts {
+                self.addDebt(trip: self.trip!, from: self.paidBy, with: debt)
             }
-            
-            let debt = Double(amount)!/Double(self.members.count)
-            for member in memberArr {
-                self.addDebt(trip: self.trip!,for: member, from: member, with: debt)
-            }
-            
             self.navigationController?.popViewController(animated: true)
         }
     }
     
-    private func addDebt(trip: TripModel, for member: MemberModel, from paid_by: MemberModel,with debt: Double) {
+    private func addDebt(trip: TripModel, from paid_by: MemberModel,with debt: DebtModel) {
         guard
-            let uid = member.id,
+            let uid = debt.uid,
+            let count = debt.count,
+            let amount = debt.amount,
             let paid_id = paidBy.id,
             let trip_id = trip.id
             else { return }
         
         let values = [
             "uid" : uid,
-            "amount": debt,
-            "count" : "1",
+            "amount": amount,
+            "count" : count,
             "paid_id": paid_id,
             "trip_id": trip_id,
             ] as [String:Any]
@@ -201,22 +218,22 @@ extension AddExpenseViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueCell(ofType: RelatedTableCell.self)
         cell.countTF.addTarget(self, action: #selector(countTFDidChange(_:)), for: .editingChanged)
         cell.countTF.tag = indexPath.row
+        cell.countTF.keyboardType = .numberPad
         setupCell(cell, model: debts[indexPath.row])
         return cell
     }
     
     // TODO: - Handler countTF change
     @objc private func countTFDidChange(_ sender: UITextField) {
-        let total = Double(amountTF.text!) ?? 0.0
-        debts[sender.tag].count = Int(sender.text ?? "0") ?? 0
-        debts = modifyData(arr: debts, with: total)
-        tableView.reloadData()
+        debts[sender.tag].count = Int(sender.text!)
+        reloadDataWhenAmountChange()
     }
     
     // TODO: - setupCell
     private func setupCell(_ cell: RelatedTableCell, model: DebtModel){
         cell.nameLB.text = model.name
-        cell.countTF.text = "\(model.count ?? 1)"
-        cell.amountLB.text = "\(model.amount ?? 0)"
+        let count = (model.count != nil) ? "\(model.count!)" : ""
+        cell.countTF.text = count
+        cell.amountLB.text = "đ" + String(format: "%g", model.amount ?? 0.0)//"\(model.amount ?? 0)"
     }
 }

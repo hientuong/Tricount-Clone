@@ -32,7 +32,10 @@ class AddNewTripViewController: ViewController {
     override func setupUI() {
         let saveItemButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         navigationItem.rightBarButtonItem = saveItemButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.title = "New Trip"
+        
+        titleTF.addTarget(self, action: #selector(titleTFDidChange), for: .editingChanged)
     }
     
     // MARK: - IBAction
@@ -48,6 +51,10 @@ class AddNewTripViewController: ViewController {
         createNewTrip {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc private func titleTFDidChange(){
+        navigationItem.rightBarButtonItem?.isEnabled = !(titleTF.text!.isEmpty)
     }
     
     // MARK: - Firebase DB

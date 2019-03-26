@@ -95,7 +95,7 @@ extension BalancesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func setupCell(_ cell: BalancesTableViewCell, model: DebtModel){
-        cell.amountLB.text = "đ\(model.amount!)"
+        cell.amountLB.text = "đ" + String(format: "%g", model.amount!)
         
         let service = MemberService()
         
