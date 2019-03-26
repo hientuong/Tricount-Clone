@@ -48,10 +48,14 @@ class BalancesViewController: ViewController {
         
         for uid in uids {
             for paidId in paidIds {
-                let sum = arr.filter({$0.uid == uid && $0.paid_id == paidId}).map({$0.amount!}).reduce(0, +)
-                print("sum: \(sum)")
+                let sum = arr.filter{$0.uid == uid && $0.paid_id == paidId}
+                    .map{$0.amount!}
+                    .reduce(0, +)
                 if sum > 0 {
-                    let model = DebtModel(name: "", uid: uid, amount: sum, count: 1, paid_id: paidId)
+                    let model = DebtModel(
+                        uid: uid,
+                        amount: sum,
+                        paid_id: paidId)
                     resultArr.append(model)
                 }
             }
@@ -60,10 +64,16 @@ class BalancesViewController: ViewController {
         var finalResult = [DebtModel]()
         
         for result in resultArr {
-            let arr = resultArr.filter { $0.uid == result.paid_id && $0.paid_id == result.uid }
+            let arr = resultArr
+                .filter { $0.uid == result.paid_id && $0.paid_id == result.uid }
+            
             if let first = arr.first {
                 let amount = result.amount! - first.amount!
-                let model = DebtModel(name: "", uid: result.uid, amount: amount, count: 1, paid_id: result.paid_id)
+                let model = DebtModel(
+                    uid: result.uid,
+                    amount: amount,
+                    paid_id: result.paid_id)
+                
                 finalResult.append(model)
             }
         }

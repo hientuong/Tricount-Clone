@@ -26,7 +26,7 @@ class DebtModel: Mappable {
         paid_id <- map["paid_id"]
     }
     
-    init(name: String?, uid: String?, amount: Double?, count: Int?, paid_id: String?) {
+    init(name: String? = nil, uid: String?, amount: Double?, count: Int? = nil, paid_id: String?) {
         self.name = name
         self.uid = uid
         self.amount = amount
